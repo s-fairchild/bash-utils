@@ -61,6 +61,7 @@ https://github.com/pirate/fish-functions
  - Make bash scripts safer by writing them in Rust                        https://github.com/rust-shell-script/rust_cmd_lib
  - Additional shell options for non-trivial bash scripts                  https://saveriomiroddi.github.io/Additional-shell-options-for-non-trivial-bash-shell-scripts/
  - Bash unit testing framework                                            https://github.com/pgrange/bash_unit
+ - in-cli: run commands across multiple directories with glob patterns    https://github.com/inevolin/in-cli/
  - What exactly was the point of `[ “x$var” = “xval” ]`?                  https://www.vidarholen.net/contents/blog/?p=1035
  - How to Write Indempotent Bash Scripts                                  https://arslan.io/2019/07/03/how-to-write-idempotent-bash-scripts/
  - Better Bash Scripting in 15 Minutes                                    http://robertmuth.blogspot.com/2012/08/better-bash-scripting-in-15-minutes.html

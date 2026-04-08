@@ -130,8 +130,11 @@ function fatal {
     [ ! -z "${STATUS##*[!0-9]*}" ] || STATUS=3
 
     # kill all child processes in current subshell
-    jobs -p | xargs 'kill -9 --' 2>/dev/null
+    local -a CHILD_PIDS=()
+    mapfile -t CHILD_PIDS < <(jobs -p 2>/dev/null || true)
+    if (( "${#CHILD_PIDS[@]}" )); then
+        kill -9 -- "${CHILD_PIDS[@]}" 2>/dev/null || true
+    fi
 
     exit $STATUS
 }
-

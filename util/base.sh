@@ -24,11 +24,30 @@ SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 ROOT_PID=$$
 PARENT_PID=$PPID
 
-# get input/output redirection state
-[[ ! -t 0 ]]; IS_STDIN_TTY="${?}"
-[[ ! -t 1 ]]; IS_STDOUT_TTY="${?}"
-[[ ! -t 2 ]]; IS_STDERR_TTY="${?}"
-[[ ! "$IS_STDIN_TTY$IS_STDOUT_TTY$IS_STDERR_TTY" == "111" ]]; IS_TTY="${?}"
+# get input/output redirection state without tripping ERR traps while sourcing
+if [[ -t 0 ]]; then
+    IS_STDIN_TTY="1"
+else
+    IS_STDIN_TTY="0"
+fi
+
+if [[ -t 1 ]]; then
+    IS_STDOUT_TTY="1"
+else
+    IS_STDOUT_TTY="0"
+fi
+
+if [[ -t 2 ]]; then
+    IS_STDERR_TTY="1"
+else
+    IS_STDERR_TTY="0"
+fi
+
+if [[ "$IS_STDIN_TTY$IS_STDOUT_TTY$IS_STDERR_TTY" == "111" ]]; then
+    IS_TTY="1"
+else
+    IS_TTY="0"
+fi
 
 ### General Helpers
 
@@ -253,4 +272,3 @@ function REQUIRES_CONFIG {
 # }
 
 # main "$@"
-

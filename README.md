@@ -8,6 +8,8 @@ A collection of my hand-crafted bash scripts and helper functions for various co
 - `lib/` is a collection of adapters to interact with 3rd party tools or scripts, e.g. cloudflare/letsencrypt/etc
 - `util/` is a collection of pure bash functions to make development in bash easier e.g. logging/configuration/error handling/etc.
 
+When sourcing helpers directly, source `util/base.sh` before `util/logging.sh` and the other `util/` or `lib/` files. `base.sh` enables the shared shell options and defines helpers like `REQUIRES_CMDS`, which `logging.sh` depends on.
+
 
 ## Reading List
 
@@ -223,5 +225,4 @@ TERMINAL_WIDTH=$(tput cols)
 strace -e trace=clone -e fault=clone:error=EAGAIN
 ```
 https://medium.com/@manav503/using-strace-to-perform-fault-injection-in-system-calls-fcb859940895
-
 
